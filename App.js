@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app! Small changes...</Text>
+      <Text> My app seems to be working in Android Studio! </Text>
       <StatusBar style="auto" />
     </View>
   );
