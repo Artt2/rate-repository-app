@@ -1,5 +1,5 @@
 import { View, StyleSheet} from "react-native";
-import BottomInfoBar from "./BottomInfoBar";
+import BottomInfoBar from "./BottomInfo";
 import TopInfo from "./TopInfo";
 
 const styles = StyleSheet.create({
