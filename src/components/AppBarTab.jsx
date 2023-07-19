@@ -1,7 +1,8 @@
 import { View, Pressable, StyleSheet } from "react-native";
 import Text from "./Text";
+import { Link } from "react-router-native";
 
-const AppBarTab = ({ text }) => {
+const AppBarTab = ({ text, path }) => {
   const handlePress = () => {
     console.log("AppBarTab pressed")
   }
@@ -20,7 +21,9 @@ const AppBarTab = ({ text }) => {
   return (
     <View style={styles.tabContainer}>
       <Pressable onPress={handlePress}>
-        <Text style={styles.tabText}>{text}</Text>
+        <Link to={path}>
+          <Text style={styles.tabText}>{text}</Text>
+        </Link>
       </Pressable>
     </View>
   )
