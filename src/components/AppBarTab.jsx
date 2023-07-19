@@ -3,7 +3,7 @@ import Text from "./Text";
 import { Link } from "react-router-native";
 
 const AppBarTab = ({ text, path }) => {
-  const handlePress = () => {
+  const handlePress = () => { //TODO: DELETE THIS
     console.log("AppBarTab pressed")
   }
 
