@@ -11,7 +11,6 @@ const useRepositories = () => {
     fetchPolicy: "cache-and-network",
   });
   
-  console.log(result.data)
 
   useEffect(() => {
     if (!result.loading && result.data) { //if not loading and data found, set it
