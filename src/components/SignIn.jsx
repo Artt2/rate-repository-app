@@ -52,13 +52,13 @@ const initialValues = {
 const SignIn = () => {
   const [signIn] = useSignIn();
 
-  const handleSignIn = async (values) => {
+  const handleSignIn = async (values, { resetForm }) => {
     const { username, password } = values;
 
     try {
       const { data } = await signIn({ username, password });
       console.log(data);
-
+      resetForm();  //reset fields of form
     } catch (e) {
       console.log(e);
     }
