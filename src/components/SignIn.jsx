@@ -1,6 +1,7 @@
 import { View, Pressable, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from "yup";
+import { useNavigate } from "react-router-native";
 
 import FormikTextInput from './FormikTextInput';
 import Text from './Text';
@@ -51,13 +52,17 @@ const initialValues = {
 
 const SignIn = () => {
   const [signIn] = useSignIn();
+  const navigate = useNavigate();
 
   const handleSignIn = async (values, { resetForm }) => {
     const { username, password } = values;
 
     try {
-      const { data } = await signIn({ username, password });
-      console.log(data);
+      const { data } = await signIn({ username, password });  //eslint-disable-line
+      //console.log(data);
+
+      navigate("/");  //redirect to repositories
+
       resetForm();  //reset fields of form
     } catch (e) {
       console.log(e);
