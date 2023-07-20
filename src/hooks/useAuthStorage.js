@@ -8,7 +8,7 @@ export const useAuthStorage = () => {
   return useContext(AuthStorageContext);
 };
 
-export default AuthStorageContext;
+export default useAuthStorage;  //AuthStorageContext
 
 /*
   The materials show that a new context should be created here...
