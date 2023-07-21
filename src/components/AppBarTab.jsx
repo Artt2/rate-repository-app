@@ -4,7 +4,6 @@ import { Link } from "react-router-native";
 
 const AppBarTab = ({ text, path, signOut }) => {
   const handlePress = () => { //this gets activated onlyby Link's onPress
-    console.log("AppBarTab pressed");
     if (text === "Sign Out") {  //sign out only if this is the "Sign Out" tab
       signOut();
     }

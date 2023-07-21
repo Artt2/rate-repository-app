@@ -1,15 +1,18 @@
 import { View, StyleSheet, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
-import { useQuery } from '@apollo/client';
 
 import theme from '../theme';
 import AppBarTab from './AppBarTab';
-import useUser from '../hooks/useUser'; //not sure if needed at all
+//import useUser from '../hooks/useUser'; //not sure if needed at all
 
 import { GET_USER } from '../graphql/queries';
+import { useQuery } from '@apollo/client';
+
 
 import { useAuthStorage } from '../hooks/useAuthStorage';
 import { useApolloClient } from '@apollo/client';
+
+import { useState, useEffect } from 'react';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,19 +27,12 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   const authStorage = useAuthStorage();
   const apolloClient = useApolloClient();
+  
   const { data } = useQuery(GET_USER);
 
-  const signOut = async () => {
-    console.log("signing out...")
-    await authStorage.removeAccessToken();
-    apolloClient.resetStore();
-  }
-  const getToken = async () => {
-    const accessToken = await authStorage.getAccessToken();
-    console.log(`current accessToken: ${accessToken}`);
-  }
-  getToken();
   const me = data?.me;
+
+  console.log(me);
   
   if (me === null) {
     console.log("user not authenticated, null")
@@ -46,12 +42,34 @@ const AppBar = () => {
     console.log(`user found: ${me}`)
   }
 
+  const [me2, setMe] = useState(null);
+
+  useEffect(() => {
+    const getToken = async () => {
+      const accessToken = await authStorage.getAccessToken();
+       setMe(accessToken);
+    }
+
+    getToken();
+  }, []);
+
+  console.log("current token: ", me2);
+
+  const signOut = async () => {
+    console.log("signing out...")
+    await authStorage.removeAccessToken();
+    apolloClient.resetStore();
+  }
+
   return ( 
     <View style={styles.container}>
       <ScrollView horizontal={true}>
         <AppBarTab text={"Repositories"} path="/" />
         {me ? (
-            <AppBarTab text={"Sign Out"} path="/" onPress={signOut} />
+          <>
+            <AppBarTab text={"Sign in"} path="/signin" />
+            <AppBarTab text={"Sign Out"} path="/" signOut={signOut} />          
+          </>
         ) : (
           <>
             <AppBarTab text={"Sign in"} path="/signin" />
@@ -70,5 +88,5 @@ export default AppBar;
   createAplloClient sets the header, but does it update it? 
 
   Setting authorization in createApolloClient as "Bearer [string of token here]" works.
-  It seems that the accesstoken isnt updated to the authorization header.
+  It seems that the accesstoken isnt updated to the authorization header once the user signs in.
 */
