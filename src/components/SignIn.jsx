@@ -1,13 +1,13 @@
-import { View, Pressable, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 import * as yup from "yup";
 import { useNavigate } from "react-router-native";
 
 import FormikTextInput from './FormikTextInput';
-import Text from './Text';
 
 import theme from '../theme';
 import useSignIn from '../hooks/useSignIn';
+import BlueButton from './BlueButton';
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -49,7 +49,9 @@ const initialValues = {
   username: "",
   password: "",
 };
-
+/*
+  Pure container for SignIn.
+*/
 const SignInContainer = ({ onSubmit }) => {
   return (
     <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
@@ -66,9 +68,7 @@ const SignInContainer = ({ onSubmit }) => {
             placeholder="Password"
             secureTextEntry={true}
           />
-          <Pressable style={styles.button} onPress={handleSubmit}>
-            <Text style={styles.buttonText}>Sign in</Text>
-          </Pressable>
+          <BlueButton text={"Sign in"} onPress={handleSubmit} />
         </View>
       )}
     </Formik>

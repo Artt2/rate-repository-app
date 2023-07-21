@@ -30,15 +30,7 @@ const AppBar = () => {
 
   const me = data?.me;
 
-  console.log(me);
-  
-  if (me === null) {
-    console.log("user not authenticated, null")
-  } else if (me === undefined) {
-    console.log("user is undefined, waiting...")
-  } else {
-    console.log(`user found: ${me}`)
-  }
+  console.log(`GET_USER query data.me: ${me}`);
 
   const signOut = async () => {
     console.log("signing out...")
