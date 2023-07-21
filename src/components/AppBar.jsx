@@ -12,8 +12,6 @@ import { useQuery } from '@apollo/client';
 import { useAuthStorage } from '../hooks/useAuthStorage';
 import { useApolloClient } from '@apollo/client';
 
-import { useState, useEffect } from 'react';
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -42,19 +40,6 @@ const AppBar = () => {
     console.log(`user found: ${me}`)
   }
 
-  const [me2, setMe] = useState(null);
-
-  useEffect(() => {
-    const getToken = async () => {
-      const accessToken = await authStorage.getAccessToken();
-       setMe(accessToken);
-    }
-
-    getToken();
-  }, []);
-
-  console.log("current token: ", me2);
-
   const signOut = async () => {
     console.log("signing out...")
     await authStorage.removeAccessToken();
@@ -67,13 +52,11 @@ const AppBar = () => {
         <AppBarTab text={"Repositories"} path="/" />
         {me ? (
           <>
-            <AppBarTab text={"Sign in"} path="/signin" />
             <AppBarTab text={"Sign Out"} path="/" signOut={signOut} />          
           </>
         ) : (
           <>
             <AppBarTab text={"Sign in"} path="/signin" />
-            <AppBarTab text={"Sign Out"} path="/" signOut={signOut} />
           </>
         )}
       </ScrollView>
