@@ -1,5 +1,4 @@
-import { View, StyleSheet, Pressable} from "react-native";
-import { useNavigate } from "react-router-native";
+import { View, StyleSheet} from "react-native";
 import * as Linking from "expo-linking";
 
 import TopInfo from "./TopInfo";
@@ -16,11 +15,6 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItem = ({ item, view }) => {
-  const navigate = useNavigate();
-
-  const handlePress = () => {
-    navigate(`/${item.id}`);  //redirect to single RepositoryView
-  };
 
   const onPress = () => {
     console.log(`opening: ${item.url}`);
@@ -29,10 +23,8 @@ const RepositoryItem = ({ item, view }) => {
 
   return (
     <View testID={"repositoryItem"} style={styles.repositoryItem}>
-      <Pressable onPress={handlePress}>
-        <TopInfo item={item} />
-        <BottomInfoBar item={item} />
-      </Pressable>
+      <TopInfo item={item} />
+      <BottomInfoBar item={item} />
       {view && <BlueButton text={"Open in GitHub"} onPress={onPress}/>}
     </View>   
   )
