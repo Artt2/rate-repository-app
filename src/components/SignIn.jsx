@@ -50,27 +50,9 @@ const initialValues = {
   password: "",
 };
 
-const SignIn = () => {
-  const [signIn] = useSignIn();
-  const navigate = useNavigate();
-
-  const handleSignIn = async (values, { resetForm }) => {
-    const { username, password } = values;
-
-    try {
-      const { data } = await signIn({ username, password });  //eslint-disable-line
-      //console.log(data);
-
-      navigate("/");  //redirect to repositories
-
-      resetForm();  //reset fields of form
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
+const SignInContainer = ({ onSubmit }) => {
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSignIn}>
+    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
       {({ handleSubmit }) => (
         <View style={styles.container}>
           <FormikTextInput 
@@ -93,4 +75,29 @@ const SignIn = () => {
   );
 };
 
+const SignIn = () => {
+  const [signIn] = useSignIn();
+  const navigate = useNavigate();
+
+  const handleSignIn = async (values, { resetForm }) => {
+    const { username, password } = values;
+
+    try {
+      const { data } = await signIn({ username, password });  //eslint-disable-line
+      //console.log(data);
+
+      navigate("/");  //redirect to repositories
+
+      resetForm();  //reset fields of form
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  
+  return (
+    <SignInContainer onSubmit={handleSignIn} />
+  )
+};
+
 export default SignIn;
+export { SignInContainer };
