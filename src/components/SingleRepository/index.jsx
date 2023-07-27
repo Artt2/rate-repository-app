@@ -11,6 +11,7 @@ const SingleRepository = () => {
   const { id } = useParams();
 
   const { loading, error, data } = useQuery(GET_REPOSITORY, { //eslint-disable-line
+    fetchPolicy: "cache-and-network",
     variables: { id },
   });
 

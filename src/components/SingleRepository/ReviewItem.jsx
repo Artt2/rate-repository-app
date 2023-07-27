@@ -1,5 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import Text from "../Text";
+import { format } from "date-fns";
 
 import theme from "../../theme";
 
@@ -23,15 +24,15 @@ const styles = StyleSheet.create({
   rating: {
     color: theme.colors.primary,  //color of text
     textAlign: "center",  //center text
-    fontSize: 20,
+    fontSize: 18,
     borderWidth: 4, //set border
     borderRadius: 30,  //makes a circle SET THIS TO 50% AND REMOVE WIDTH/HEIGHT
     borderColor: theme.colors.primary,  //border colorr
     width: 60,
     height: 60,
     alignSelf: "flex-start",  //align object to start of flex (left)
-    padding: 20,  //space between text and border
-    margin: 5 //space around border
+    padding: 15,  //space between text and border
+    margin: 10 //space around border
   },
   name: {
     fontWeight: "bold",
@@ -49,6 +50,8 @@ const styles = StyleSheet.create({
 
 const ReviewItem = ({ review }) => {
 
+  const formattedDate = format(new Date(review.createdAt), "dd.MM.yyyy");
+
   return (
     <View style={styles.container}>
       <View style={styles.leftContainer}>
@@ -56,7 +59,7 @@ const ReviewItem = ({ review }) => {
       </View>
       <View style={styles.rightContainer}>
         <Text style={styles.name}>{review.user.username}</Text>
-        <Text style={styles.createdAt}>{review.createdAt}</Text>
+        <Text style={styles.createdAt}>{formattedDate}</Text>
         <Text style={styles.text}>{review.text}</Text>
       </View>
     </View>

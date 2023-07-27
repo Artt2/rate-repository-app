@@ -44,6 +44,7 @@ const AppBar = () => {
         <AppBarTab text={"Repositories"} path="/" />
         {me ? (
           <>
+            <AppBarTab text="Create a review" path="/review" />
             <AppBarTab text={"Sign Out"} path="/" signOut={signOut} />          
           </>
         ) : (
@@ -57,11 +58,3 @@ const AppBar = () => {
 };
 
 export default AppBar;
-
-/*
-  Query doesnt work in the app, but it does in apollo explorer.
-  createAplloClient sets the header, but does it update it? 
-
-  Setting authorization in createApolloClient as "Bearer [string of token here]" works.
-  It seems that the accesstoken isnt updated to the authorization header once the user signs in.
-*/
