@@ -11,7 +11,7 @@ const useReview = () => {
       rating: Number(rating),
       text
     }}});
-  }
+  };
 
   return [createReview, result];
 };
