@@ -7,8 +7,6 @@ const useRepositories = (order, keyword) => {
   const [repositories, setRepositories] = useState();
   const [loading, setLoading] = useState(false);  //why is this false at start?
   
-  console.log(`keyword from useRepositories: ${keyword}`);
-
   /*
     order => result
 

@@ -3,12 +3,15 @@ import { useQuery } from "@apollo/client";
 
 import { GET_USER } from "../graphql/queries";
 
-const useUser = () => {
+const useUser = (includeReviews) => {
   const [user, setUser] = useState();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const result = useQuery(GET_USER, {
     fetchPolicy: "cache-and-network",
+    variables: {
+      includeReviews,
+    },
   });
 
   useEffect(() => {
