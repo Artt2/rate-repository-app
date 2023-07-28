@@ -3,15 +3,27 @@ import { useQuery } from '@apollo/client';
 
 import { GET_REPOSITORIES } from "../graphql/queries.js"
 
-const useRepositories = () => {
+//TODO: Edit to use order 
+const useRepositories = (order) => {
   const [repositories, setRepositories] = useState();
   const [loading, setLoading] = useState(false);  //why is this false at start?
-  
+  /*
+    order => result
+    
+    LATEST => CREATED_AT & DESC
+    HIGHEST => RATING_AVERAGE & DESC
+    LOWEST => RATING_AVERAGE & ASC
+  */
+  const variables = {
+    orderBy: order === "LATEST" ? "CREATED_AT" : "RATING_AVERAGE",
+    orderDirection: order === "LOWEST" ? "ASC" : "DESC",
+  };
+
   const result = useQuery(GET_REPOSITORIES, {
+    variables,
     fetchPolicy: "cache-and-network",
   });
   
-
   useEffect(() => {
     if (!result.loading && result.data) { //if not loading and data found, set it
       setLoading(false);
