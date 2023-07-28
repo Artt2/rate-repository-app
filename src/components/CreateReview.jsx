@@ -103,6 +103,7 @@ const CreateReview = () => {
 
     try {
       const { data } = await createReview(values);
+      console.log(data);
 
       navigate(`/${data.createReview.repositoryId}`);
       resetForm();
