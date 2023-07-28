@@ -8,11 +8,13 @@ import FormikTextInput from "./FormikTextInput";
 import theme from "../theme";
 import BlueButton from "./BlueButton";
 
+import useReview from "../hooks/useReview";
+
 const validationSchema = yup.object().shape({
-  owner: yup
+  ownerName: yup
     .string()
     .required("Repository owner name is required"),
-  name: yup
+  repositoryName: yup
     .string()
     .required(),
   rating: yup
@@ -21,7 +23,7 @@ const validationSchema = yup.object().shape({
     .max(100)
     .required("Rating is required")
     .typeError("Rating needs to be a number between 0 and 100"),
-  reviewText: yup
+  text: yup
     .string()
 });
 
@@ -53,10 +55,10 @@ const styles = StyleSheet.create({
 });
 
 const initialValues = {
-  owner: "",
-  name: "",
+  ownerName: "",
+  repositoryName: "",
   rating: "",
-  reviewText: "",
+  text: "",
 };
 
 const CreateReviewContainer = ({ onSubmit }) => {
@@ -66,12 +68,12 @@ const CreateReviewContainer = ({ onSubmit }) => {
       <View style={styles.container}>
         <FormikTextInput
           style={styles.textInput}
-          name="owner"
+          name="ownerName"
           placeholder="Repository owner name"
         />
         <FormikTextInput
           style={styles.textInput}
-          name="name"
+          name="repositoryName"
           placeholder="Repository name"
         />
         <FormikTextInput
@@ -81,7 +83,7 @@ const CreateReviewContainer = ({ onSubmit }) => {
         />
         <FormikTextInput
           style={styles.textInput}
-          name="reviewText"
+          name="text"
           placeholder="Review"
         />
         <BlueButton text="Create a review" onPress={handleSubmit} />
@@ -92,18 +94,17 @@ const CreateReviewContainer = ({ onSubmit }) => {
 };
 
 const CreateReview = () => {
+  const [createReview] = useReview();
   const navigate = useNavigate();
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     console.log(values);
     console.log("creating a review...");
 
     try {
+      const { data } = await createReview(values);
 
-      //const { data } = await 
-      //const id = 
-
-      navigate("/") //temporary
+      navigate(`/${data.createReview.repositoryId}`);
       resetForm();
     } catch (e) {
       console.log(e);

@@ -23,6 +23,10 @@ const SingleRepository = () => {
   const repositoryItem = data?.repository;
   const reviews = data?.repository.reviews.edges.map(edge => edge.node);
   
+  if (reviews.length === 0) {
+    return (<RepositoryItem item={repositoryItem} view={true} />)
+  }
+
   return (
     <View>
       <FlatList

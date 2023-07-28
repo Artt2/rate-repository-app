@@ -14,5 +14,10 @@ export const SIGN_IN = gql`
   }
 `;
 
-//export const CREATE_REVIEW = gql`
-//`;
+export const CREATE_REVIEW = gql`
+  mutation CreateReview($input: CreateReviewInput) {
+    createReview(review: $input) {
+      repositoryId
+    }
+  }
+`;
