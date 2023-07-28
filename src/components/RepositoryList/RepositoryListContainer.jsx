@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-native';
 
 import RepositoryItem from '../RepositoryItem';
 import ItemSeparator from '../ItemSeparator';
-import OrderPicker from './OrderPicker';
+import ListHeader from './ListHeader';
 
 const renderItem = ({ item, navigate }) => {
 
@@ -28,7 +28,7 @@ export const RepositoryListContainer = ({ repositories }) => {
       data={repositoryNodes}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) => renderItem({ item, navigate })}
-      ListHeaderComponent={<OrderPicker />}
+      ListHeaderComponent={<ListHeader />}
     />
   );
 };

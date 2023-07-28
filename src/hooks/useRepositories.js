@@ -3,13 +3,15 @@ import { useQuery } from '@apollo/client';
 
 import { GET_REPOSITORIES } from "../graphql/queries.js"
 
-//TODO: Edit to use order 
-const useRepositories = (order) => {
+const useRepositories = (order, keyword) => {
   const [repositories, setRepositories] = useState();
   const [loading, setLoading] = useState(false);  //why is this false at start?
+  
+  console.log(`keyword from useRepositories: ${keyword}`);
+
   /*
     order => result
-    
+
     LATEST => CREATED_AT & DESC
     HIGHEST => RATING_AVERAGE & DESC
     LOWEST => RATING_AVERAGE & ASC
@@ -17,6 +19,7 @@ const useRepositories = (order) => {
   const variables = {
     orderBy: order === "LATEST" ? "CREATED_AT" : "RATING_AVERAGE",
     orderDirection: order === "LOWEST" ? "ASC" : "DESC",
+    searchKeyword: keyword
   };
 
   const result = useQuery(GET_REPOSITORIES, {

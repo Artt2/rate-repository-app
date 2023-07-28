@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import useRepositories from '../../hooks/useRepositories';
 import RepositoryListContainer from './RepositoryListContainer';
+import { useDebounce } from 'use-debounce';
 
 import OrderContext from './contexts/OrderContext';
 
-//TODO: useRepositories query with order
 const RepositoryList = () => {
   const [order, setOrder] = useState("LATEST");
-  const { repositories } = useRepositories(order);
+  const [keyword, setKeyword] = useState("");
+  const [keywordDebounced] = useDebounce(keyword, 500);
+  const { repositories } = useRepositories(order, keywordDebounced);
 
   return (
-    <OrderContext.Provider value={{order, setOrder}}>
+    <OrderContext.Provider value={{order, setOrder, keyword, setKeyword}}>
       <RepositoryListContainer repositories={repositories} />
     </OrderContext.Provider>
   );
