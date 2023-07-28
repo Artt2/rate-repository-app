@@ -35,11 +35,3 @@ const Main = () => {
 };
 
 export default Main;
-
-/*
-  <Route path="/" element={<RepositoryList />} exact />
-  <Route path="/signin" element={<SignIn />} exact />
-
-  <Route path="/" element={<SignIn />} exact />
-  <Route path="/signin" element={<RepositoryList />} exact />
-*/

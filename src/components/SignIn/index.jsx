@@ -58,7 +58,6 @@ const SignIn = () => {
 
     try {
       const { data } = await signIn({ username, password });  //eslint-disable-line
-      //console.log(data);
 
       navigate("/");  //redirect to repositories
 

@@ -30,8 +30,6 @@ const AppBar = () => {
 
   const me = data?.me;
 
-  console.log(`GET_USER query data.me: ${me}`);
-
   const signOut = async () => {
     await authStorage.removeAccessToken();
     apolloClient.resetStore();

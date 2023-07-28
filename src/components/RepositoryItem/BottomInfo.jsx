@@ -46,20 +46,3 @@ const BottomInfoBar = ({ item }) => {
 };
 
 export default BottomInfoBar;
-
-/*
-  Old implementation
-
-  <View style={styles.rowContainer}>
-    <Text fontWeight={"bold"}>{formatNumbers(item.stargazersCount)}</Text>
-    <Text fontWeight={"bold"}>{formatNumbers(item.forksCount)}</Text>
-    <Text fontWeight={"bold"}>{formatNumbers(item.reviewCount)}</Text>
-    <Text fontWeight={"bold"}>{formatNumbers(item.ratingAverage)}</Text>
-  </View>
-  <View style={styles.rowContainer}>
-    <Text>Stars</Text>
-    <Text>Forks</Text>
-    <Text>Reviews</Text>
-    <Text>Rating</Text>
-  </View>
-*/

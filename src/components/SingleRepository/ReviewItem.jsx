@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   text: {
     color: theme.colors.textPrimary,
     padding: 2,
+    width: "100%" //width is not infinitely long (all text in one line), its 100%
   }
 });
 

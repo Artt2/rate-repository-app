@@ -1,11 +1,18 @@
 import { useParams } from "react-router-native";
 import { useQuery } from "@apollo/client";
-import { FlatList, View } from "react-native";
+import { FlatList, View, StyleSheet } from "react-native";
 
 import RepositoryItem from "../RepositoryItem";
 import ItemSeparator from "../ItemSeparator";
 import ReviewItem from "./ReviewItem";
 import { GET_REPOSITORY } from "../../graphql/queries";
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingBottom: 20,
+  }
+});
 
 const SingleRepository = () => {
   const { id } = useParams();
@@ -30,7 +37,7 @@ const SingleRepository = () => {
   const all = [repositoryItem].concat(reviews);
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={all}
         ItemSeparatorComponent={ItemSeparator}
