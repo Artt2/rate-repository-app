@@ -1,4 +1,4 @@
-# Part 9: React Native
+# Part 10: React Native
 
 Part 10 of the University of Helsinki's Full Stack Open Course, see [here](https://fullstackopen.com/en/part10) for more.
 
